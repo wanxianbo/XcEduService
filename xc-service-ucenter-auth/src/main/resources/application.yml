@@ -1,0 +1,54 @@
+server:
+  port: ${PORT:40400}
+  servlet:
+    context-path: /auth
+spring:
+  application:
+    name: xc-service-ucenter-auth
+  redis:
+    host: 192.168.42.130
+    port: 6379
+    timeout: PT5S
+    jedis:
+      pool:
+        max-active: 3
+        max-idle: 3
+        min-idle: 1
+  datasource:
+    druid:
+      url: jdbc:mysql://192.168.42.130:3306/xc_user?useSSL=false&serverTimezone=UTC&characterEncoding=utf-8
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      initial-size: 5 #初始建立连接数量
+      min-idle: 5 #最小连接数量
+      max-active: 20 #最大连接数量
+      max-wait: 10000 #获取连接最大等待时间，毫秒
+      test-on-borrow: true #申请连接时检测连接是否有效
+      test-while-idle: false #归还连接时检测连接是否有效
+      time-between-eviction-runs-millis: 60000 #配置间隔检测连接是否有效的时间（单位是毫秒）
+      min-evictable-idle-time-millis: 300000 #连接在连接池的最小生存时间（毫秒）
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:50101/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+ribbon:
+  ConnectTimeout: 5000 #ribbon连接超时时长
+  ReadTimeout: 6000 #ribbon读取超时时长
+  maxAutoRetries: 0 #当前服务器重试次数
+  maxAutoRetriesNextServer: 1 #切换服务重试次数
+auth:
+  tokenValiditySeconds: 1200  #token存储到redis的过期时间
+  clientId: XcWebApp
+  clientSecret: XcWebApp
+  cookieDomain: xuecheng.com
+  cookieMaxAge: -1
+encrypt:
+  key-store:
+    location: classpath:xc.keystore
+    secret: xuechengkeystore
+    alias: xckey
+    password: xuecheng
