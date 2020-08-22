@@ -1,0 +1,26 @@
+server:
+  port: 31001
+spring:
+  application:
+    name: xc-service-manage-cms
+  data:
+    mongodb:
+      uri: mongodb://root:root@192.168.42.130:27017
+      authentication-database: admin
+      database: xc_cms
+  freemarker:
+    cache: false
+    settings:
+      template_update_delay: 0 #检查模板更新延迟时间，设置为0表示立即检查，如果时间大于0会有缓存不方便进行模板测试
+  rabbitmq:
+    host: 192.168.42.130
+    username: xuecheng
+    password: xuecheng
+    virtual-host: /xuecheng
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:50101/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
