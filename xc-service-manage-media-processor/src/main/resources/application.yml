@@ -1,0 +1,22 @@
+server:
+  port: 31450
+spring:
+  application:
+    name: xc-service-manage-media-processor
+  data:
+    mongodb:
+      uri: mongodb://root:root@192.168.42.130:27017
+      database: xc_media
+      authentication-database: admin
+  rabbitmq:
+    host: 192.168.42.130
+    port: 5672
+    username: xuecheng
+    password: xuecheng
+    virtual-host: /xuecheng
+xc-service-manage-media:
+  mq:
+    queue-media-video-processor: queue_media_video_processor
+    routingkey-media-video: routingkey_media_video
+  video-location: H:/integrated_project/video/
+  ffmpeg-path: E:/my_java/ffmpeg/ffmpeg-20200807-fab00b0-win64-static/bin/ffmpeg.exe

@@ -1,0 +1,32 @@
+server:
+  port: 31400
+spring:
+  application:
+    name: xc-service-manage-media
+  data:
+    mongodb:
+      uri: mongodb://root:root@192.168.42.130:27017
+      database: xc_media
+      authentication-database: admin
+  rabbitmq:
+    host: 192.168.42.130
+    port: 5672
+    username: xuecheng
+    password: xuecheng
+    virtual-host: /xuecheng
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:50101/eureka
+  instance:
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+ribbon:
+  ConnectTimeout: 5000 #ribbon连接超时时长
+  ReadTimeout: 6000 #ribbon读取超时时长
+  maxAutoRetries: 0 #当前服务器重试次数
+  maxAutoRetriesNextServer: 1 #切换服务重试次数
+xc-service-manage-media:
+  upload-location: H:/integrated_project/video/
+  mq:
+    routingkey-media-video: routingkey_media_video
